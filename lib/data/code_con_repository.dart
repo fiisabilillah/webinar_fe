@@ -1,3 +1,6 @@
+import 'package:webinar_fe/data/domain/duitku_entities/get_payment_method_params.dart';
+import 'package:webinar_fe/data/domain/entities/payment_method.dart';
+import 'package:webinar_fe/data/domain/entities/tresult.dart';
 import 'package:dio/dio.dart';
 
 class CodeConRepository {
@@ -6,15 +9,21 @@ class CodeConRepository {
 
   CodeConRepository({Dio? dio}) : _dio = dio ?? Dio();
 
-  Future<String> testGetPaymentMethods() async {
+  Future<TResult<List<PaymentMethod>>> getPaymentMethods(
+      {GetPaymentMethodParams? params}) async {
     try {
-      final response =
-          await _dio.post('https://$baseUrl/getPaymentMethods', data: {
-        'amount': 100000,
-      });
-      return response.data.toString();
+      final response = await _dio.post('https://$baseUrl/getPaymentMethods',
+          data: params?.toJson() ?? {});
+
+      final paymentMethods = (response.data['paymentFee'] as List)
+          .map(
+            (m) => PaymentMethod.fromJson(m),
+          )
+          .toList();
+
+      return Success(paymentMethods);
     } on DioException catch (e) {
-      return 'Error: ${e.message}';
+      return Failure(e.response?.data.toString() ?? e.message.toString());
     }
   }
 
