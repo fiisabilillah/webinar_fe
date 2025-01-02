@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 
 class CodeConRepository {
   final Dio _dio;
-  final String baseUrl = 'https://webinar-be-9d58.globeapp.dev';
+  final String baseUrl = 'https://code-con-course-be.globeapp.dev';
 
   CodeConRepository({Dio? dio}) : _dio = dio ?? Dio();
 
@@ -42,13 +42,16 @@ class CodeConRepository {
     }
   }
 
-  Future<String> testCheckReservation() async {
+  Future<TResult<Reservation>> checkReservation(String email) async {
     try {
-      final response = await _dio.post('$baseUrl/checkReservation',
-          data: {'email': 'rambo@blackpink.com'});
-      return response.data.toString();
+      final response =
+          await _dio.post('$baseUrl/checkReservation', data: {'email': email});
+
+      final reservation = Reservation.fromJson(response.data['data']);
+
+      return Success(reservation);
     } on DioException catch (e) {
-      return 'Error: ${e.message}';
+      return Failure('${e.response?.data ?? e.message}');
     }
   }
 }
