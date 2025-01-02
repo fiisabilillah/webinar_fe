@@ -1,4 +1,4 @@
-import 'package:code_con_course_fe/presentation/constants.dart';
+import 'package:webinar_fe/presentation/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/code_con_app_bar.dart';
