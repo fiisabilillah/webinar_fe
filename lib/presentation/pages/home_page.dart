@@ -1,7 +1,7 @@
 import 'package:webinar_fe/presentation/constants.dart';
 import 'package:flutter/material.dart';
 
-// import '../widgets/code_con_app_bar.dart';
+import '../widgets/code_con_app_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,9 +10,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: tertiaryColor,
-      appBar: AppBar(
-        title: const Text('Code Con'),
-      ),
+      appBar: const PreferredSize(
+          preferredSize: Size(double.infinity, 60), child: CodeConAppBar()),
       body: SafeArea(
           child: Stack(
         children: [
