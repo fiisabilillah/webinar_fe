@@ -2,6 +2,7 @@ import 'package:webinar_fe/domain/entities/reservation.dart';
 import 'package:webinar_fe/presentation/constants.dart';
 import 'package:webinar_fe/presentation/extensions/build_context_extension.dart';
 import 'package:webinar_fe/presentation/providers/router_provider.dart';
+import 'package:webinar_fe/presentation/widgets/error_dialog.dart';
 import 'package:webinar_fe/presentation/widgets/registration_status_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -48,15 +49,17 @@ class CodeConAppBar extends ConsumerWidget {
                   sizedBoxWidth20,
                   InkWell(
                       onTap: () {
-                        context.show(RegistrationStatusDialog(
-                          reservation: Reservation.fromJson({
-                            'Order ID': '123',
-                            'Email': 'officialteam548@gmail.com',
-                            'Name': 'Erico',
-                            'Status': 'PAID',
-                            'Payment URL': 'https://google.com'
-                          }),
-                        ));
+                        context
+                            .show(const ErrorDialog(message: 'Error Testing'));
+                        // context.show(RegistrationStatusDialog(
+                        //   reservation: Reservation.fromJson({
+                        //     'Order ID': '123',
+                        //     'Email': 'erico.dh@blackpink.com',
+                        //     'Name': 'Erico',
+                        //     'Status': 'PAID',
+                        //     'Payment URL': 'https://google.com'
+                        //   }),
+                        // ));
                       },
                       child: const Text('Contact',
                           style: TextStyle(color: Colors.white))),
