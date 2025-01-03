@@ -1,13 +1,15 @@
 import 'package:webinar_fe/presentation/constants.dart';
 import 'package:webinar_fe/presentation/extensions/build_context_extension.dart';
+import 'package:webinar_fe/presentation/providers/router_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class HomePageHeader extends StatelessWidget {
+class HomePageHeader extends ConsumerWidget {
   const HomePageHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
       children: [
         Container(
@@ -17,14 +19,14 @@ class HomePageHeader extends StatelessWidget {
         ),
         Center(
           child: Wrap(
-            children: headerElements(context),
+            children: headerElements(context, ref),
           ),
         )
       ],
     );
   }
 
-  List<Widget> headerElements(BuildContext context) {
+  List<Widget> headerElements(BuildContext context, WidgetRef ref) {
     double elementWidth = context.windowsSize == WindowsSizes.compact
         ? context.contentWidth
         : context.contentWidth / 2;
@@ -43,7 +45,7 @@ class HomePageHeader extends StatelessWidget {
                 eventLocation(width: elementWidth),
                 eventPrice(),
                 sizedBoxHeight30,
-                registerButton(),
+                registerButton(ref),
                 sizedBoxHeight40,
               ],
             ),
@@ -54,8 +56,10 @@ class HomePageHeader extends StatelessWidget {
     ];
   }
 
-  Widget registerButton() => ElevatedButton(
-      onPressed: () {},
+  Widget registerButton(WidgetRef ref) => ElevatedButton(
+      onPressed: () {
+        ref.watch(routerProvider).goNamed('register');
+      },
       style: const ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(secondaryColor)),
       child: const Text('Register Now', style: TextStyle(color: Colors.white)));
