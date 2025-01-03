@@ -1,4 +1,5 @@
 import 'package:webinar_fe/presentation/pages/home_page.dart';
+import 'package:webinar_fe/presentation/pages/return_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -23,5 +24,28 @@ Raw<GoRouter> router(RouterRef ref) => GoRouter(routes: [
         path: '/check',
         name: 'check',
         builder: (context, state) => const RegistrationStatusPage(),
+      ),
+      GoRoute(
+        path: '/return',
+        name: 'return',
+        builder: (context, state) {
+          var params = state.uri.queryParameters;
+
+          return ReturnPage(
+              merchantOrderId: '${params['merchantOrderId']}',
+              resultCode: '${params['resultCode']}',
+              reference: '${params['reference']}');
+        },
+        redirect: (context, state) {
+          var params = state.uri.queryParameters;
+
+          if (params.containsKey('merchantOrderId') &&
+              params.containsKey('resultCode') &&
+              params.containsKey('reference')) {
+            return null;
+          }
+
+          return '/home';
+        },
       )
     ], initialLocation: '/home', debugLogDiagnostics: false);
