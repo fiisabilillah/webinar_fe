@@ -1,10 +1,10 @@
-import 'package:webinar_fe/domain/entities/speaker.dart';
+
 import 'package:webinar_fe/presentation/constants.dart';
 import 'package:webinar_fe/presentation/widgets/brief_description_section.dart';
 import 'package:webinar_fe/presentation/widgets/home_page_header.dart';
-import 'package:webinar_fe/presentation/widgets/speaker_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../providers/speaker_section.dart';
 import '../widgets/code_con_app_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,17 +23,11 @@ class HomePage extends StatelessWidget {
             color: Colors.white,
           ),
           ListView(
-            children: [
+            children: const [
               HomePageHeader(),
               sizedBoxHeight60,
               BriefDescriptionSection(),
-              SpeakerWidget(
-                  speaker: Speaker(
-                      name: 'Jessamine Mumtaz',
-                      title: 'CTO',
-                      affiliation: 'Microsoft',
-                      photoUrl: 'assets/pngs/jessamine_mumtaz.png')),
-              Text('SpeakerSection'),
+              SpeakerSection(),
               Text('AgendaSection'),
               sizedBoxHeight60,
               Text('LinksSection'),
