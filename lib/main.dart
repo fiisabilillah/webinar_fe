@@ -1,15 +1,15 @@
-import 'package:google_fonts/google_fonts.dart';
+import 'package:webinar_fe/presentation/constants.dart';
 import 'package:webinar_fe/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
-
-import 'presentation/constants.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MainApp()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
