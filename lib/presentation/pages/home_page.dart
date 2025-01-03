@@ -1,4 +1,5 @@
 import 'package:webinar_fe/presentation/constants.dart';
+import 'package:webinar_fe/presentation/widgets/brief_description_section.dart';
 import 'package:webinar_fe/presentation/widgets/home_page_header.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
             children: const [
               HomePageHeader(),
               sizedBoxHeight60,
-              Text('BriefDescriptionSection'),
+              BriefDescriptionSection(),
               Text('SpeakerSection'),
               Text('AgendaSection'),
               sizedBoxHeight60,
