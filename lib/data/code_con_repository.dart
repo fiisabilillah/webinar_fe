@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 
 class CodeConRepository {
   final Dio _dio;
-  final String baseUrl = 'https://code-con-course-be.globeapp.dev';
+  final String baseUrl = 'https://webinar-be-9d58.globeapp.dev';
 
   CodeConRepository({Dio? dio}) : _dio = dio ?? Dio();
 
