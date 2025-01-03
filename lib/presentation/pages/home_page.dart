@@ -1,4 +1,5 @@
 import 'package:webinar_fe/presentation/constants.dart';
+import 'package:webinar_fe/presentation/widgets/home_page_header.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/code_con_app_bar.dart';
@@ -20,7 +21,7 @@ class HomePage extends StatelessWidget {
           ),
           ListView(
             children: const [
-              Text('HomePageHeader'),
+              HomePageHeader(),
               sizedBoxHeight60,
               Text('BriefDescriptionSection'),
               Text('SpeakerSection'),
